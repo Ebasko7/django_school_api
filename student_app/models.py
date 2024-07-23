@@ -4,7 +4,7 @@ from .validators import validate_name_format, validate_school_email, validate_co
 class Student(models.Model):
     name = models.CharField(validators=[validate_name_format])
     student_email = models.EmailField(unique=True, validators=[validate_school_email])
-    personal_email = models.EmailField(blank=True, unique=True, validators=[validate_personal_email]''')
+    personal_email = models.EmailField(blank=True, unique=True, validators = [validate_personal_email])
     locker_number = models.IntegerField(default=110, unique=True, validators = [validate_locker_number])
     locker_combination = models.CharField(unique=False, default = '12-12-12', validators=[validate_combination_format])
     good_student = models.BooleanField(default=True)

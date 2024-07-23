@@ -44,9 +44,11 @@ class Test_student(TestCase):
             self.fail()
         except ValidationError as e:
             # print(e.message_dict)
-            self.assertIn(
-                "student_email" , e.message_dict and "personal_email", e.message_dict
-            )
+            #self.assertIn(
+                #"student_email" , e.message_dict and "personal_email", e.message_dict
+            self.assertIn("student_email", e.message_dict)
+            self.assertIn("personal_email", e.message_dict)
+            
 
     def test_003_student_with_improper_locker_number_fields(self):
         try:

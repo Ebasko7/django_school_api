@@ -24,7 +24,7 @@ def validate_school_email(email):
     
 def validate_personal_email(email):
     error_message = 'Enter a valid email address'
-    pattern = r'^.+@[A-Za-z]+\.com$'
+    pattern = r'^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.com$'
 
     good_email= re.match(pattern, email)
     if good_email:
@@ -32,7 +32,6 @@ def validate_personal_email(email):
     else:
         raise ValidationError(error_message, params={'email': email})
     
-
     
 def validate_combination_format(combo):
     pattern = r'^\d{2}-\d{2}-\d{2}$'
@@ -54,13 +53,3 @@ def validate_locker_number(number):
         error_message = 'Ensure this value is less than or equal to 200.'
     raise ValidationError(error_message, params = {'number': number})
    
-   
-def validate_personal_email(email):
-    error_message = ''
-    pattern = r'^.+@school\.com$'
-
-    good_email= re.match(pattern, email)
-    if good_email:
-        return email
-    else:
-        raise ValidationError(error_message, params={'email': email})
