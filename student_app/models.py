@@ -1,12 +1,12 @@
 from django.db import models
-from .validator import validate_name_format
+from .validators import validate_name_format, validate_school_email, validate_combination_format, validate_locker_number, validate_personal_email
 
 class Student(models.Model):
-    name = models.CharField(validators = [validate_name_format])
-    student_email = models.EmailField(unique=True)
-    personal_email = models.EmailField(blank=True, unique=True)
-    locker_number = models.IntegerField(default=110, unique=True)
-    locker_combination = models.CharField(unique=False, default = '12-12-12')
+    name = models.CharField(validators=[validate_name_format])
+    student_email = models.EmailField(unique=True, validators=[validate_school_email])
+    personal_email = models.EmailField(blank=True, unique=True, validators=[validate_personal_email]''')
+    locker_number = models.IntegerField(default=110, unique=True, validators = [validate_locker_number])
+    locker_combination = models.CharField(unique=False, default = '12-12-12', validators=[validate_combination_format])
     good_student = models.BooleanField(default=True)
 
     def __str__(self):
